@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Liên hệ</title>
+  <link rel="stylesheet" href="assets/css/torent.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/lienhe.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="assets/slick-master/slick/slick.css"/>
+  <link rel="stylesheet" type="text/css" href="assets/slick-master/slick/slick-theme.css"/>
+  <script type="text/javascript" src="assets/slick-master/slick/slick.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <link rel="stylesheet" href="assets/js/bootstrap.min.js">
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <script src='assets/https://kit.fontawesome.com/a076d05399.js'></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">assets/
+</head>
+<body>
+  <div id="app">
+      <!-- {/* NAVBAR */} -->
+      <div class="hpc-navbar">
+        <div class="container">
+          <div class="row">
+            <cls-navbar></cls-navbar>
+            <cls-navbarmobile></cls-navbarmobile>
+          </div>
+        </div>
+      </div>
+      <!-- {/* END NAVBAR */} -->
+
+      <div class="inner-wrapper-contact">
+        <div class="map">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m26!1m12!1m3!1d2197.640412086396!2d105.77136207925831!3d21.02368375420232!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m11!3e0!4m3!3m2!1d21.022699799999998!2d105.77054539999999!4m5!1s0x313454af617a3695%3A0xa9e3eb97ec88de0e!2zTWlkZGxlIFNjaG9vbCBUZWNobm9sb2d5IEhVU1QsIDIwIE5nw7UgMzIyIMSQxrDhu51uZyBN4bu5IMSQw6xuaCwgTmjDom4gTeG7uSwgTmFtIFThu6sgTGnDqm0sIEjDoCBO4buZaSAxMDAwMDAsIFZpZXRuYW0!3m2!1d21.0226777!2d105.7705306!5e0!3m2!1sen!2s!4v1602517727501!5m2!1sen!2s" width="2440" height="418" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <div class="contact-details">
+                <h1>Nhà Trọ Xanh</h1>
+                <ul>       
+                  <li><a href="#"><i class="fa fa-phone"></i>&nbsp;&nbsp;Phone : 0964341331</a></li>
+                  <li><a href="#"><i class="fa fa-envelope-open"></i>&nbsp;&nbsp;Email : hoantran.us@gmail.com</a></li>
+                  <li><a href="#"><i class="fa fa-map-marker" style="font-size: 20px;"></i>&nbsp;&nbsp;Address : 20 Ngõ 322 Đường Mỹ Đình, Nhân Mỹ, Nam Từ Liêm, Mỹ Đình, Hà Nội</a></li>
+                </ul>
+              </div>
+              <div class="contact-form">
+                <div class="box-contact">
+                  <div class="blue"></div>
+                  <div class="vanban">Gửi tin nhắn cho chúng tôi</div>
+                </div>
+                <div class="input-contact">
+                  <p>Tên</p>
+                  <input type="text" name="Ten">
+                </div>
+                <div class="input-contact">
+                  <p>Email</p>
+                  <input type="text" name="Email">
+                </div>
+                <div class="input-contact">
+                  <p>Số điện thoại</p>
+                  <input type="text" name="sdt">
+                </div>
+                <div class="input-contact-content">
+                  <p>Nội dung</p>
+                  <textarea rows="10" cols="10" name="noi dung"></textarea>
+                </div>
+                <div class="submit"><a href="#">Gửi</a></div>
+              </div>  
+            </div>
+          </div>
+        </div>
+      </div>  
+
+      <!-- {/* FOOTER */} -->
+      <div class="row">
+
+        <cls-footer></cls-footer>
+
+      </div>
+      <!-- {/* END FOOTER */} -->
+    </div>
+  <script src="assets/components/footer.js"></script>
+  <script src="assets/components/navbar.js"></script>
+  <script src="assets/components/navbarMobile.js"></script>
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        message: "vooc code toi it thoi cac bo F12 =)))"
+      },
+      methods: {
+      },
+      components: {
+        'cls-footer': footerHpc,
+        'cls-navbar': navbar,
+        'cls-navbarmobile': navbarmobile
+      },
+      mounted(){
+      }
+    });
+  </script>
+  <script src="assets/js/jquery-3.5.1.min.js"></script>
+</body>
+</html>
+
+
+
+
+

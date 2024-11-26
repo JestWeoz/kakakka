@@ -1,0 +1,84 @@
+.map{
+  height: 418px;
+  width: 100%;
+}
+.contact-details{
+  height: 225px;
+  line-height: 40px;
+}
+h1{
+  height: 65px;
+  line-height: 60px;
+  font-size: 22px;
+  color: #555d5d;
+  padding-top: 20px;
+}
+ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  li{
+    a{
+      text-decoration: none;
+      color: #555d5d;
+    }
+  }
+}
+.box-contact{
+  background: #ededed;
+  width: 100%;
+  height: 65px;
+  margin: 0 auto;
+}
+.blue{
+  height: 3px;
+    background-color: skyblue;
+}
+.vanban{
+  font-size: 20px;
+  margin-left: 25px;
+  line-height: 65px;
+  color: #333333;
+}
+.input-contact{
+  width: 100%;
+  height: 95px;
+  margin: 0 auto;
+  margin-top: 5px;
+  input{
+    width: 440px;
+    height: 40px;
+    border: 1px solid #BBBBBB;
+  }
+  p{
+    color: #444444;
+    margin-bottom: 5px;
+  }
+}
+.input-contact-content {
+  width: 100%;
+  height: 175px;
+  margin: 0 auto;
+  margin-top: 10px;
+  p{
+    color: #444444;
+    margin-bottom: 5px;
+  }
+  textarea{
+    width: 440px;
+    height: 150px;
+    border: 1px solid #BBBBBB
+  }
+}
+.submit{
+  width: 55px;
+  height: 32px;
+  background: #FF9933;
+  line-height: 32px;
+  text-align: center;
+  margin-top: 20px;
+  a{
+    text-decoration: none;
+    color: white;
+  } 
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="assets/css/article.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/torent.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="assets/slick-master/slick/slick.css"/>
+  <link rel="stylesheet" type="text/css" href="assets/slick-master/slick/slick-theme.css"/>
+  <script type="text/javascript" src="assets/slick-master/slick/slick.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <link rel="stylesheet" href="assets/js/bootstrap.min.js">
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <script src='assets/https://kit.fontawesome.com/a076d05399.js'></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <div id="app">
+      <!-- {/* NAVBAR */} -->
+      <div class="hpc-navbar">
+        <div class="container">
+          <div class="row">
+            <cls-navbar></cls-navbar>
+            <cls-navbarmobile></cls-navbarmobile>
+          </div>
+        </div>
+      </div>
+      <!-- {/* END NAVBAR */} -->
+
+      <!-- ARTICLE -->
+      <cls-article></cls-article>
+      <!-- END ARTICLE -->
+
+      <!-- {/* FOOTER */} -->
+      <div class="row">
+
+        <cls-footer></cls-footer>
+
+      </div>
+      <!-- {/* END FOOTER */} -->
+    </div>
+  <script src="assets/js/jquery-3.5.1.min.js"></script>
+  <script src="assets/slick-master/slick/slick.min.js"></script>
+  <script src="assets/components/footer.js"></script>
+  <script src="assets/components/navbar.js"></script>
+  <script src="assets/components/navbarMobile.js"></script>
+  <script src="assets/article_components/Article.js"></script>
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        message: "vooc code toi it thoi cac bo F12 =)))"
+      },
+      methods: {
+      },
+      components: {
+        'cls-footer': footerHpc,
+        'cls-navbar': navbar,
+        'cls-navbarmobile': navbarmobile,
+        'cls-article': article
+      },
+      mounted(){
+      }
+    });
+  </script>
+  
+</body>
+</html>
+
+
+
+
+

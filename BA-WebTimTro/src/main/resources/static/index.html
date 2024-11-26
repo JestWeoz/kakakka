@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Trang chủ</title>
+  <link rel="stylesheet" th:href="@{../assets/css/style.css}">
+  <link rel="stylesheet" th:href="@{/assets/slick-master/slick/slick.css}"/>
+  <link rel="stylesheet" th:href="@{/assets/slick-master/slick/slick-theme.css}"/>
+  <script type="text/javascript" th:src="@{/assets/slick-master/slick/slick.min.js}"></script>
+  <script th:src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script th:src="https://kit.fontawesome.com/a076d05399.jsth:"></script>
+  <script th:src="https://nhatroxanh-e8d13.web.app/city.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div id="app">
+  <!-- {/* NAVBAR */} -->
+  <div class="hpc-navbar">
+    <div class="container">
+      <div class="row">
+        <cls-navbar></cls-navbar>
+        <cls-navbarmobile></cls-navbarmobile>
+      </div>
+    </div>
+  </div>
+  <!-- {/* END NAVBAR */} -->
+  <!-- {/* BANNER HOME SEARCH */} -->
+  <div class="row">
+    <div class="bg-page-content">
+
+      <search></search>
+
+    </div>
+  </div>
+  <!-- {/* END BANNER HOME SEARCH */} -->
+  <!-- {/* REVIEW WARD */} -->
+  <div class="row">
+    <div class="container">
+
+      <area-review></area-review>
+
+    </div>
+  </div>
+  <!-- {/* END REVIEW WARD */} -->
+  <!-- {/* PROPERTI LIST */} -->
+  <div class="row">
+    <div class="container">
+
+      <cls-property-listing></cls-property-listing>
+
+    </div>
+  </div>
+  <!-- {/* END PROPERTI LIST */} -->
+  <!-- {/* BANNER CONTENT */} -->
+  <div class="row">
+    <div class="container">
+
+      <cls-banner></cls-banner>
+
+    </div>
+  </div>
+  <!-- {/* END BANNER CONTENT */} -->
+  <!-- {/* PROPERTI LIST */} -->
+  <div class="row">
+    <div class="container">
+
+      <cls-property-listing></cls-property-listing>
+
+    </div>
+  </div>
+  <!-- {/* END PROPERTI LIST */} -->
+  <!-- {/* FOOTER */} -->
+  <div class="row">
+
+    <cls-footer></cls-footer>
+
+  </div>
+  <!-- {/* END FOOTER */} -->
+</div>
+<script th:src="@{assets/js/jquery-3.5.1.min.js}"></script>
+<script th:src="@{assets/slick-master/slick/slick.min.js}"></script>
+<script th:src="@{assets/components/areaReview.js}"></script>
+<script th:src="@{assets/components/banner.js}"></script>
+<script th:src="@{assets/components/footer.js}"></script>
+<script th:src="@{assets/components/navbar.js}"></script>
+<script th:src="@{assets/components/navbarMobile.js}"></script>
+<script th:src="@{assets/components/propertyListing.js}"></script>
+<script th:src="@{assets/components/search.js}"></script>
+<script>
+  var vm = new Vue({
+    el: '#app',
+    data: {
+      message: "vooc code toi it thoi cac bo F12 =)))"
+    },
+    methods: {
+    },
+    components: {
+      'area-review': areaReview,
+      'cls-banner': banner,
+      'cls-footer': footerHpc,
+      'cls-navbar': navbar,
+      'cls-navbarmobile': navbarmobile,
+      'cls-property-listing': propertyListing,
+      'cls-search': search
+    },
+    mounted(){
+    }
+  });
+</script>
+</body>
+</html>
+
+
+
