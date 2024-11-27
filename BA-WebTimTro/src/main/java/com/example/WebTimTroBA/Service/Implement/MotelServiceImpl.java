@@ -2,6 +2,9 @@ package com.example.WebTimTroBA.Service.Implement;
 
 import com.example.WebTimTroBA.Converter.MotelResponseConverter;
 import com.example.WebTimTroBA.CustomException.NotFoundException;
+import com.example.WebTimTroBA.Model.ApiDistance.Distance;
+import com.example.WebTimTroBA.Model.ApiDistance.Leg;
+import com.example.WebTimTroBA.Model.ApiDistance.RouterResponse;
 import com.example.WebTimTroBA.Model.DTO.MotelDTO;
 import com.example.WebTimTroBA.Model.Entity.FileEntity;
 import com.example.WebTimTroBA.Model.Entity.MotelEntity;
@@ -21,11 +24,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.reactive.function.client.WebClient;
 
 
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -76,7 +81,7 @@ public class MotelServiceImpl implements MotelService {
     public List<MotelResponse> findAll() throws MalformedURLException {
 //        List<MotelEntity> motelEntities = motelRepository.findAll(Sort.by("created_at").descending().and(Sort.by("updated_at").descending().and(Sort.by("status").ascending())));
 
-        return motelResponseConverter.toMotelResponse(motelRepository.findAll());
+        return motelResponseConverter.toMotelResponseApproved(motelRepository.findAll());
     }
 
     @Override
@@ -132,5 +137,73 @@ public class MotelServiceImpl implements MotelService {
         }
 
         return result;
+    }
+
+    @Override
+    public void review(List<Integer> ids, Integer status) {
+        if(status == 1){ // xóa
+            for(Integer id : ids){
+                MotelEntity motelEntity = motelRepository.findById(id).get();
+                motelEntity.setUserId(null);
+                UserEntity user = motelEntity.getUser();
+                user.getMotelEntities().remove(motelEntity);
+            }
+            motelRepository.deleteByIdIn(ids);
+        }
+        else if(status == 2){ // gỡ bài
+            for(Integer id : ids){
+                MotelEntity motelEntity = motelRepository.findById(id).get();
+                motelEntity.setStatus(0);
+            }
+        }
+        else{
+            for(Integer id : ids){
+                MotelEntity motelEntity = motelRepository.findById(id).get();
+                motelEntity.setStatus(1);
+            }
+        }
+    }
+
+    @Override
+    public List<MotelResponse> getByRadius(String destination, Double radius) throws MalformedURLException {
+        List<MotelResponse> motelResponses = getApprovedMotels();
+        List<MotelResponse> result = new ArrayList<>();
+
+        for(MotelResponse motelResponse: motelResponses) {
+            String url = String.format(
+                    "https://maps.gomaps.pro/maps/api/directions/json?origin=%s&destination=%s&key=AlzaSyPy5W8ze98SLVMJo2HDIjyT2O2adH9Dw1U",
+                    destination,
+                    motelResponse.getAddress()
+            );
+
+            WebClient.Builder builder = WebClient.builder();
+            List<Distance> list = builder.build()
+                    .get()
+                    .uri(url)
+                    .header("Accept", "application/json")
+                    .retrieve()
+                    .bodyToMono(RouterResponse.class)
+                    .map(response -> response.getRoutes().stream()
+                            .flatMap(route -> route.getLegs().stream())
+                            .map(Leg::getDistance)
+                            .collect(Collectors.toList()))
+                    .block();
+
+
+            assert list != null;
+            if(!list.isEmpty() && radius >= list.getFirst().getValue()){
+                motelResponse.setDistance(list.getFirst().getText());
+                motelResponse.setDistanceValue(list.getFirst().getValue());
+                result.add(motelResponse);
+            }
+        }
+        result.sort(Comparator.comparing(MotelResponse::getDistanceValue));
+        return result;
+    }
+
+    @Override
+    public List<MotelResponse> getApprovedMotels() throws MalformedURLException {
+        List<MotelEntity> motelEntities = motelRepository.findAll();
+        return motelResponseConverter.toMotelResponse(motelEntities);
     }
 }

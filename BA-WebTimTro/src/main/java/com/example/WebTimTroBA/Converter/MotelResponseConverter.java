@@ -72,4 +72,60 @@ public class MotelResponseConverter {
         motelResponse.setOwner(ownerResponseConverter.toOwnerResponse(motelEntity.getUser()));
         return motelResponse;
     }
+    public List<MotelResponse> toMotelResponseApproved(List<MotelEntity> motelEntities) throws MalformedURLException {
+        List<MotelResponse> result = new ArrayList<>();
+        for(MotelEntity motelEntity : motelEntities){
+            MotelResponse motelResponse = modelMapper.map(motelEntity, MotelResponse.class);
+            List<FileDTO> filesDTO = new ArrayList<>();
+            List<FileEntity> fileEntities = fileService.findByMotelId(motelEntity.getId());
+            for(FileEntity fileEntity : fileEntities){
+                FileDTO fileDTO = FileDTO
+                        .builder()
+                        .name(fileEntity.getName())
+                        .fileId(fileEntity.getFileId())
+                        .fileUrl(fileEntity.getFileUrl())
+                        .build();
+                filesDTO.add(fileDTO);
+            }
+            motelResponse.setFilesDTO(filesDTO);
+            motelResponse.setCreateAt(motelEntity.getCreatedAt().toLocalDate());
+            motelResponse.setOwner(ownerResponseConverter.toOwnerResponse(motelEntity.getUser()));
+            motelResponse.setAddress("Số " + motelEntity.getHouseNumber() + ", " + motelEntity.getStreet() + ", "
+                    + motelEntity.getWard() + ", " + motelEntity.getDistrict() + ", " + motelEntity.getProvince());
+            if(motelEntity.getStatus() == 1){
+                motelResponse.setStatus("đã duyệt");
+                result.add(motelResponse);
+            }
+        }
+        Collections.sort(result);
+        return result;
+    }
+    public List<MotelResponse> toMotelResponseUnApproved(List<MotelEntity> motelEntities) throws MalformedURLException {
+        List<MotelResponse> result = new ArrayList<>();
+        for(MotelEntity motelEntity : motelEntities){
+            MotelResponse motelResponse = modelMapper.map(motelEntity, MotelResponse.class);
+            List<FileDTO> filesDTO = new ArrayList<>();
+            List<FileEntity> fileEntities = fileService.findByMotelId(motelEntity.getId());
+            for(FileEntity fileEntity : fileEntities){
+                FileDTO fileDTO = FileDTO
+                        .builder()
+                        .name(fileEntity.getName())
+                        .fileId(fileEntity.getFileId())
+                        .fileUrl(fileEntity.getFileUrl())
+                        .build();
+                filesDTO.add(fileDTO);
+            }
+            motelResponse.setFilesDTO(filesDTO);
+            motelResponse.setCreateAt(motelEntity.getCreatedAt().toLocalDate());
+            motelResponse.setOwner(ownerResponseConverter.toOwnerResponse(motelEntity.getUser()));
+            motelResponse.setAddress("Số " + motelEntity.getHouseNumber() + ", " + motelEntity.getStreet() + ", "
+                    + motelEntity.getWard() + ", " + motelEntity.getDistrict() + ", " + motelEntity.getProvince());
+            if(motelEntity.getStatus() == 0){
+                motelResponse.setStatus("chưa được duyệt");
+                result.add(motelResponse);
+            }
+        }
+        Collections.sort(result);
+        return result;
+    }
 }

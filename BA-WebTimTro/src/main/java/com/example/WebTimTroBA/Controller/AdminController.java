@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.MalformedURLException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/admin")
@@ -30,5 +31,13 @@ public class AdminController {
     @GetMapping("/list-user")
     public ResponseEntity<Object> findAllUsers(@RequestParam(name = "page", defaultValue = "1") Integer page) throws Exception {
         return ResponseEntity.ok().body(userService.getAllUsers(page));
+    }
+
+    @PostMapping("/admin-review")
+    public ResponseEntity<Object> review(List<Integer> ids,
+                                         @RequestHeader("Authorization") String authorization,
+                                         Integer status){
+        motelService.review(ids, status);
+        return ResponseEntity.ok().body("Success");
     }
 }

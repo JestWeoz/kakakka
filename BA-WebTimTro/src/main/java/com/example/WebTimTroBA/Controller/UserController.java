@@ -114,7 +114,7 @@ public class UserController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-    @GetMapping("account/motels")
+    @GetMapping("/account/motels")
     public ResponseEntity<?> getUserMotel(String token, @RequestHeader("Authorization") String authorization) {
         Integer id = jwtTokenUtils.extractUserId(authorization.replace("Bearer ", ""));
         try {
@@ -123,6 +123,10 @@ public class UserController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+    }
+    @GetMapping("/get-by-radius")
+    public ResponseEntity<?> getUserMotel(String destination, Double radius) throws MalformedURLException {
+        return ResponseEntity.ok().body(motelService.getByRadius(destination, radius));
     }
 
 }

@@ -19,4 +19,10 @@ public interface MotelService {
     MotelResponse getById(Integer Id);
     void editById(Integer Id, MotelDTO motelDTO);
     List<MotelResponse>getMotelsByUserId (Integer Id);
+
+    void review(List<Integer> ids, Integer status);
+
+    Object getByRadius(String destination, Double radius) throws MalformedURLException;
+
+    List<MotelResponse> getApprovedMotels() throws MalformedURLException;
 }

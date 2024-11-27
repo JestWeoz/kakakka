@@ -48,6 +48,10 @@ public class MotelResponse implements Comparable<MotelResponse>{
 
     List<FileDTO> filesDTO;
 
+    private Integer distanceValue;
+
+    private String distance;
+
 
     @Override
     public int compareTo(MotelResponse o) {
